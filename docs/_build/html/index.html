@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python Web Tools &mdash; Python Web Tools 3.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Python Web Tools 3.0 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Python Web Tools
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Python Web Tools</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#lorempysum-generate-random-texts">LoremPysum - Generate random texts</a></li>
+<li><a class="reference internal" href="#pageripper-harvest-words-and-links-on-a-web-page">PageRipper - harvest words and links on a web page.</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code">Code</a><ul>
+<li><a class="reference internal" href="#module-py_webber.lorem_pysum">LoremPysum</a></li>
+<li><a class="reference internal" href="#module-py_webber.page_ripper">PageRipper</a></li>
+<li><a class="reference internal" href="#module-py_webber.indexing">Indexing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Python Web Tools</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Python Web Tools</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-web-tools">
+<h1>Python Web Tools<a class="headerlink" href="#python-web-tools" title="Permalink to this headline">¶</a></h1>
+<p>A collection of tools to automate common web scraping and development tasks.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>From PyPI (not available yet)</p>
+<p>Straight from github</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Parousiaic</span><span class="o">/</span><span class="n">py_webber</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lorempysum-generate-random-texts">
+<h3>LoremPysum - Generate random texts<a class="headerlink" href="#lorempysum-generate-random-texts" title="Permalink to this headline">¶</a></h3>
+<p>Credits to <a class="reference external" href="http://loremipsum.readthedocs.io/en/latest/">Luca De Vitis</a> for the inspiration and starter code</p>
+<p>Import the class</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">py_webber</span> <span class="k">import</span> <span class="n">LoremPysum</span>
+</pre></div>
+</div>
+<p>Create a single LoremPysum instance with default Lorem Ipsum text</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">LoremPysum</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">domains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lorem</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also decide to include your words with the standard lorem ipsum text. But if that is not the case simply pass <cite>lorem=False</cite> like this</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">LoremPysum</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">domains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lorem</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>*args</cite> is an optional list of files from which to take the words to be used. Just pass any number of text files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">LoremPysum</span><span class="p">(</span><span class="s2">&quot;file.txt1&quot;</span><span class="p">,</span> <span class="s2">&quot;file2.txt&quot;</span><span class="p">,</span> <span class="n">domains</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lorem</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following methods are defined.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">email</span><span class="p">()</span> <span class="c1"># return a single email address. You could pass in a file for list of domains. Defaults are `[&quot;.com&quot;, &quot;.info&quot;, &quot;.net&quot;, &quot;.org&quot;]`</span>
+<span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="c1"># return a name in the form &quot;firstname I. lastname&quot;.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span> <span class="c1"># generate a single sentence.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">()</span> <span class="c1"># return a single paragraph of standard Lorem Ipsum text.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># return 3 paragraphs where the first paragraph is the standard text.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">(</span><span class="n">common</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># return a single paragraph where the first paragraph is random.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="c1"># generate a string (title case) with 2 to n words. Defaults is 5. Good for article titles.</span>
+</pre></div>
+</div>
+<p>In case you want to look into the words used, the following instance attributes are defined.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">common</span> <span class="c1"># A list of the first few words in the lorem ipsum text</span>
+<span class="n">p</span><span class="o">.</span><span class="n">words</span> <span class="c1"># A list of all the words in the lorem ipsum text.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">standard</span> <span class="c1"># Standard lorem ipsum text. Usually the first 1/3rd portion of a sample file.</span>
+<span class="n">p</span><span class="o">.</span><span class="n">domains</span> <span class="c1"># list of domain name endings</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pageripper-harvest-words-and-links-on-a-web-page">
+<h3>PageRipper - harvest words and links on a web page.<a class="headerlink" href="#pageripper-harvest-words-and-links-on-a-web-page" title="Permalink to this headline">¶</a></h3>
+<p>Import the class</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">py_webber</span> <span class="k">import</span> <span class="n">PageRipper</span>
+</pre></div>
+</div>
+<p>Create page_ripper objects like so</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PageRipper</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># The dafault url is &#39;http://python.org&#39;</span>
+</pre></div>
+</div>
+<p>Access words and links like so</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PageRipper</span><span class="p">(</span><span class="s1">&#39;http://python.org&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">soup</span>
+<span class="n">PageRipper</span><span class="p">(</span><span class="s1">&#39;http://python.org&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">raw_links</span> <span class="c1"># all raw &lt;a&gt; tags on page as bs4 objects</span>
+<span class="n">PageRipper</span><span class="p">(</span><span class="s1">&#39;http://python.org&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">links</span><span class="p">()</span> <span class="c1"># generator of all links in the form `http://www.domain.location`</span>
+<span class="n">PageRipper</span><span class="p">(</span><span class="s1">&#39;http://python.org&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">words</span><span class="p">()</span> <span class="c1"># a generator of words between &lt;p&gt; tags</span>
+</pre></div>
+</div>
+<p>If you wish to write the BeautifulSoup output to file, use codecs</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">codecs</span>
+<span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">whand</span><span class="p">:</span>
+    <span class="n">whand</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">prettify</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-py_webber.lorem_pysum">
+<span id="lorempysum"></span><h3>LoremPysum<a class="headerlink" href="#module-py_webber.lorem_pysum" title="Permalink to this headline">¶</a></h3>
+<p>Lorem Pysum: Name, email, title, sentence and paragraph generator</p>
+<dl class="class">
+<dt id="py_webber.lorem_pysum.LoremPysum">
+<em class="property">class </em><code class="descclassname">py_webber.lorem_pysum.</code><code class="descname">LoremPysum</code><span class="sig-paren">(</span><em>*args</em>, <em>domains=None</em>, <em>lorem=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate random sentences and paragraphs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> (<em>any number of text files</em><em>, </em><em>optional</em>) – </td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Now updated LoremPysum to take any number of text files as input.</p>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.email">
+<code class="descname">email</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single email address</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return any name with a middle initial.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.paragraph">
+<code class="descname">paragraph</code><span class="sig-paren">(</span><em>count=1</em>, <em>m=3</em>, <em>n=5</em>, <em>common=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.paragraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.paragraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return paragraphs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>count</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The number of required paragraph. Default is 1</li>
+<li><strong>common</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – Whether the first paragraph will be the standard lorem ipsum text. Default is True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.sentence">
+<code class="descname">sentence</code><span class="sig-paren">(</span><em>m=4</em>, <em>n=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sentence of between m to n words. First word is capitalized.
+Defaults to between 4 to 10</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.sentences">
+<code class="descname">sentences</code><span class="sig-paren">(</span><em>count=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.sentences"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a count number of sentences joined by a random punctuation mark</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.title">
+<code class="descname">title</code><span class="sig-paren">(</span><em>n=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a title consisting of between 2 to n words. Default is 5</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.lorem_pysum.LoremPysum.word">
+<code class="descname">word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/lorem_pysum.html#LoremPysum.word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.lorem_pysum.LoremPysum.word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single word</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-py_webber.page_ripper">
+<span id="pageripper"></span><h3>PageRipper<a class="headerlink" href="#module-py_webber.page_ripper" title="Permalink to this headline">¶</a></h3>
+<p>Create a BeautifulSoup object of a webpage</p>
+<dl class="class">
+<dt id="py_webber.page_ripper.PageRipper">
+<em class="property">class </em><code class="descclassname">py_webber.page_ripper.</code><code class="descname">PageRipper</code><span class="sig-paren">(</span><em>url='http://python.org'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/page_ripper.html#PageRipper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.page_ripper.PageRipper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harvest words and links from a webpage</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>str</strong> – Page url. Default is ‘<a class="reference external" href="http://python.org">http://python.org</a>’</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Usage:</p>
+<ol class="arabic simple">
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).soup</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).raw_links</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).links()</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).words()</li>
+</ol>
+<p class="rubric">Methods</p>
+<dl class="method">
+<dt id="py_webber.page_ripper.PageRipper.links">
+<code class="descname">links</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/page_ripper.html#PageRipper.links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.page_ripper.PageRipper.links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all crawlable links (clickable url) on webpage</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> – Clickable url</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Links with “#” are excluded</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="py_webber.page_ripper.PageRipper.words">
+<code class="descname">words</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/page_ripper.html#PageRipper.words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.page_ripper.PageRipper.words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Harvest all words enclosed in &lt;p&gt; tags in webpage source</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> – Single word which is not in list of excluded words</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-py_webber.indexing">
+<span id="indexing"></span><h3>Indexing<a class="headerlink" href="#module-py_webber.indexing" title="Permalink to this headline">¶</a></h3>
+<p>Indexing functions</p>
+<dl class="function">
+<dt id="py_webber.indexing.add_page_to_index">
+<code class="descclassname">py_webber.indexing.</code><code class="descname">add_page_to_index</code><span class="sig-paren">(</span><em>word_index</em>, <em>page_url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/indexing.html#add_page_to_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.indexing.add_page_to_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add all words found in a webpage to the word index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Index of words</li>
+<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – url from which words are to be extracted</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Word index with entries added/updated</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Modifies the input dictionary in place</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="py_webber.indexing.add_to_index">
+<code class="descclassname">py_webber.indexing.</code><code class="descname">add_to_index</code><span class="sig-paren">(</span><em>word_index</em>, <em>word</em>, <em>page_url</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/py_webber/indexing.html#add_to_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#py_webber.indexing.add_to_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a word to word index and adds a page url to
+the list of urls associated with that word</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Index of words</li>
+<li><strong>word</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Word to be added to the index</li>
+<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – url to be added in the list of urls associated with “word”</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Word index with “word” and “page_url” added/updated.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This function modifies the input dictionary in-situ (in place)</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Chidi Orji (orjichidi95@gmail.com).
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
