@@ -1,5 +1,5 @@
 Metadata-Version: 1.1
-Name: py-web-tools
+Name: py-webber
 Version: 3.0
 Summary: Common tools employed in web development
 Home-page: https://github.com/Parousiaic/py_webber
@@ -8,9 +8,9 @@ Author-email: orjichidi95@gmail.com
 License: MIT
 Download-URL: https://github.com/Parousiaic/py_webber/archive/3.0.tar.gz
 Description-Content-Type: UNKNOWN
-Description: Python Web Tools
-        ==================
-        A collection of tools to automate common web scraping and development tasks.
+Description: Python Web Development Tools
+        ===============================
+        A collection of tools to automate common web scraping tasks.
         
         Installation 
         +++++++++++++++

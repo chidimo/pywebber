@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Python Web Tools documentation build configuration file, created by
+# PyWebber documentation build configuration file, created by
 # sphinx-quickstart on Sat Aug 12 00:25:33 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -61,7 +61,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Python Web Tools'
+project = 'PyWebber'
 copyright = '2017, Chidi Orji (orjichidi95@gmail.com)'
 author = 'Chidi Orji (orjichidi95@gmail.com)'
 
@@ -160,7 +160,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'PythonWebTools.tex', 'Python Web Tools Documentation',
+    (master_doc, 'PythonWebTools.tex', 'PyWebber Documentation',
      'Chidi Orji (orjichidi95@gmail.com)', 'manual'),
 ]
 
@@ -170,7 +170,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pythonwebtools', 'Python Web Tools Documentation',
+    (master_doc, 'pythonwebtools', 'PyWebber Documentation',
      [author], 1)
 ]
 
@@ -181,7 +181,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'PythonWebTools', 'Python Web Tools Documentation',
+    (master_doc, 'PythonWebTools', 'PyWebber Documentation',
      author, 'PythonWebTools', 'One line description of project.',
      'Miscellaneous'),
 ]

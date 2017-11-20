@@ -1,10 +1,12 @@
-Python Web Tools
-==================
-A collection of tools to automate common web scraping and development tasks.
+Python Web Development Tools
+===============================
+A collection of tools to automate common web scraping tasks.
 
 Installation 
 +++++++++++++++
-From PyPI (not available yet) ::
+From PyPI ::
+
+    pip install py_webber
     
 Straight from github ::
 
