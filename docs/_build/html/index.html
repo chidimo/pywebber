@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Web Development Tools &mdash; PyWebber 3.0 documentation</title>
+  <title>Python Web Development Tools &mdash; PyWebber 3.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="PyWebber 3.0 documentation" href="#"/> 
+    <link rel="top" title="PyWebber 3.1 documentation" href="#"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -94,7 +94,7 @@
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
 <li><a class="reference internal" href="#lorempysum-generate-random-texts">LoremPysum - Generate random texts</a></li>
-<li><a class="reference internal" href="#pageripper-harvest-words-and-links-on-a-web-page">PageRipper - harvest words and links on a web page.</a></li>
+<li><a class="reference internal" href="#pageripper-gather-words-and-links-on-a-web-page">PageRipper - gather words and links on a web page.</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#code">Code</a><ul>
@@ -171,14 +171,17 @@
             
   <div class="section" id="python-web-development-tools">
 <h1>Python Web Development Tools<a class="headerlink" href="#python-web-development-tools" title="Permalink to this headline">¶</a></h1>
-<p>A collection of tools to automate common web scraping tasks.</p>
+<p>Tools to automate common web scraping tasks.</p>
+<p>Provides
+1. Link and words gatherer <cite>py_webber.page_ripper.PageRipper</cite>
+2. Random text generator <cite>lorem_pysum.LoremPysum</cite></p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>From PyPI</p>
+<p><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">py_webber</span>
 </pre></div>
 </div>
-<p>Straight from github</p>
+<p><a class="reference external" href="https://github.com/">Github</a></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Parousiaic</span><span class="o">/</span><span class="n">py_webber</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span>
 </pre></div>
 </div>
@@ -222,13 +225,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="pageripper-harvest-words-and-links-on-a-web-page">
-<h3>PageRipper - harvest words and links on a web page.<a class="headerlink" href="#pageripper-harvest-words-and-links-on-a-web-page" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pageripper-gather-words-and-links-on-a-web-page">
+<h3>PageRipper - gather words and links on a web page.<a class="headerlink" href="#pageripper-gather-words-and-links-on-a-web-page" title="Permalink to this headline">¶</a></h3>
 <p>Import the class</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">py_webber</span> <span class="k">import</span> <span class="n">PageRipper</span>
 </pre></div>
 </div>
-<p>Create page_ripper objects like so</p>
+<p>Create page_ripper objects</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PageRipper</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># The dafault url is &#39;http://python.org&#39;</span>
 </pre></div>
 </div>
@@ -260,7 +263,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> (<em>any number of text files</em><em>, </em><em>optional</em>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> (<em>any number of text files</em><em>, </em><em>optional</em>) – </td>
 </tr>
 </tbody>
 </table>
@@ -288,8 +291,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>count</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The number of required paragraph. Default is 1</li>
-<li><strong>common</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) &#8211; Whether the first paragraph will be the standard lorem ipsum text. Default is True</li>
+<li><strong>count</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The number of required paragraph. Default is 1</li>
+<li><strong>common</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – Whether the first paragraph will be the standard lorem ipsum text. Default is True</li>
 </ul>
 </td>
 </tr>
@@ -337,8 +340,8 @@ Defaults to between 4 to 10</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>str</strong> &#8211; Page url. Default is &#8216;<a class="reference external" href="http://python.org">http://python.org</a>&#8216;</li>
-<li><strong>int</strong> &#8211; parser. Default value is &#8216;html.parser&#8217;. Others are &#8216;html5lib&#8217; and &#8216;lxml&#8217;</li>
+<li><strong>str</strong> – Page url. Default is ‘<a class="reference external" href="http://python.org">http://python.org</a>’</li>
+<li><strong>int</strong> – parser. Default value is ‘html.parser’. Others are ‘html5lib’ and ‘lxml’</li>
 </ul>
 </td>
 </tr>
@@ -347,10 +350,10 @@ Defaults to between 4 to 10</p>
 <p class="rubric">Notes</p>
 <p>Usage:</p>
 <ol class="arabic simple">
-<li>PageRipper(&#8220;<a class="reference external" href="http://python.org">http://python.org</a>&#8221;).soup</li>
-<li>PageRipper(&#8220;<a class="reference external" href="http://python.org">http://python.org</a>&#8221;).raw_links</li>
-<li>PageRipper(&#8220;<a class="reference external" href="http://python.org">http://python.org</a>&#8221;).links()</li>
-<li>PageRipper(&#8220;<a class="reference external" href="http://python.org">http://python.org</a>&#8221;).words()</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).soup</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).raw_links</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).links()</li>
+<li>PageRipper(“<a class="reference external" href="http://python.org">http://python.org</a>”).words()</li>
 </ol>
 <p class="rubric">Methods</p>
 <dl class="method">
@@ -361,12 +364,12 @@ Defaults to between 4 to 10</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> &#8211; Clickable url</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> – Clickable url</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>Links with &#8220;#&#8221; are excluded</p>
+<p>Links with “#” are excluded</p>
 </dd></dl>
 
 <dl class="method">
@@ -377,7 +380,7 @@ Defaults to between 4 to 10</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> &#8211; Single word which is not in list of excluded words</td>
+<tr class="field-odd field"><th class="field-name">Yields:</th><td class="field-body"><em>str</em> – Single word which is not in list of excluded words</td>
 </tr>
 </tbody>
 </table>
@@ -398,8 +401,8 @@ Defaults to between 4 to 10</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; Index of words</li>
-<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; url from which words are to be extracted</li>
+<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Index of words</li>
+<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – url from which words are to be extracted</li>
 </ul>
 </td>
 </tr>
@@ -425,13 +428,13 @@ the list of urls associated with that word</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; Index of words</li>
-<li><strong>word</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Word to be added to the index</li>
-<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; url to be added in the list of urls associated with &#8220;word&#8221;</li>
+<li><strong>word_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) – Index of words</li>
+<li><strong>word</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – Word to be added to the index</li>
+<li><strong>page_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) – url to be added in the list of urls associated with “word”</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Word index with &#8220;word&#8221; and &#8220;page_url&#8221; added/updated.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Word index with “word” and “page_url” added/updated.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
@@ -492,7 +495,7 @@ the list of urls associated with that word</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'3.0',
+            VERSION:'3.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -502,7 +505,7 @@ the list of urls associated with that word</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
