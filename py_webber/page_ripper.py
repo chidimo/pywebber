@@ -54,6 +54,9 @@ class PageRipper:
         self.soup = BeautifulSoup(self.req_text, self.parser)
         self.raw_links = self.soup.find_all('a', href=True)
 
+    def __str__(self):
+        return "PageRipper for {}".format(self.url)
+
     def links(self):
         """Return all crawlable links (clickable url) on webpage
 

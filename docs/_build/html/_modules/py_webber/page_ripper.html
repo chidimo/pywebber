@@ -170,6 +170,9 @@
 
 <span class="sd">    str</span>
 <span class="sd">        Page url. Default is &#39;http://python.org&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    int</span>
+<span class="sd">        parser. Default value is &#39;html.parser&#39;. Others are &#39;html5lib&#39; and &#39;lxml&#39;</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    ------</span>
@@ -181,12 +184,13 @@
 <span class="sd">    3. PageRipper(&quot;http://python.org&quot;).links()</span>
 <span class="sd">    4. PageRipper(&quot;http://python.org&quot;).words()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://python.org&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://python.org&quot;</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;html.parser&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn_time_out</span> <span class="o">=</span> <span class="mf">10.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">read_time_out</span> <span class="o">=</span> <span class="mf">10.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">split_str</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;[\; \, \* \n \.+\- \( \) - \/ : \? \ — </span><span class="se">\&#39;</span><span class="s1">]&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stop_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;the&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">]</span> <span class="c1"># add more stop words</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conn_time_out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_time_out</span><span class="p">))</span>
@@ -202,7 +206,7 @@
             <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> does not exist&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req_text</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req_text</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">raw_links</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PageRipper.links"><a class="viewcode-back" href="../../index.html#py_webber.page_ripper.PageRipper.links">[docs]</a>    <span class="k">def</span> <span class="nf">links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -304,7 +308,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

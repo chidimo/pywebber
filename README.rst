@@ -1,14 +1,18 @@
 Python Web Development Tools
 ===============================
-A collection of tools to automate common web scraping tasks.
+Tools to automate common web scraping tasks.
+
+Provides
+1. Link and words gatherer `py_webber.page_ripper.PageRipper`
+2. Random text generator `lorem_pysum.LoremPysum`
 
 Installation 
 +++++++++++++++
-From PyPI ::
+`PyPI <https://pypi.python.org/pypi>_` ::
 
     pip install py_webber
     
-Straight from github ::
+`Github <https://github.com/>_` ::
 
     pip install https://github.com/Parousiaic/py_webber/archive/master.zip
 
@@ -52,14 +56,14 @@ In case you want to look into the words used, the following instance attributes 
     p.standard # Standard lorem ipsum text. Usually the first 1/3rd portion of a sample file.
     p.domains # list of domain name endings
 
-PageRipper - harvest words and links on a web page.
+PageRipper - gather words and links on a web page.
 ****************************************************
 
 Import the class ::
 
     from py_webber import PageRipper
 
-Create page_ripper objects like so ::
+Create page_ripper objects ::
 
     PageRipper(url) # The dafault url is 'http://python.org'
 
