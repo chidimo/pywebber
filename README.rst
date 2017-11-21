@@ -8,11 +8,11 @@ Provides
 
 Installation 
 +++++++++++++++
-`PyPI <https://pypi.python.org/pypi>_` ::
+`PyPI <https://pypi.python.org/pypi>`_ ::
 
     pip install py_webber
     
-`Github <https://github.com/>_` ::
+`Github <https://github.com/>`_ ::
 
     pip install https://github.com/Parousiaic/py_webber/archive/master.zip
 
