@@ -9,7 +9,7 @@ def readme():
         return rhand.read()
 
 setup(name='py_webber',
-      version='3.0',
+      version='3.1',
       description='Common tools employed in web development',
       long_description=readme(),
       classifiers=[
