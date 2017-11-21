@@ -17,7 +17,7 @@ class PageRipper:
         Page url. Default is 'http://python.org'
     
     int
-        parser. Default value is 1, for 'html.parser'. Enter 2 for 'html5lib', 3 for 'lxml'
+        parser. Default value is 'html.parser'. Others are 'html5lib' and 'lxml'
 
     Notes
     ------
@@ -29,14 +29,13 @@ class PageRipper:
     3. PageRipper("http://python.org").links()
     4. PageRipper("http://python.org").words()
     """
-    def __init__(self, url="http://python.org", parser=1):
+    def __init__(self, url="http://python.org", parser="html.parser"):
         self.url = url
         self.conn_time_out = 10.0
         self.read_time_out = 10.0
         self.split_str = r'[\; \, \* \n \.+\- \( \) - \/ : \? \ — \']'
         self.stop_words = ['', '#', '\n', 'the', 'to'] # add more stop words
-        self.parsers = ["html.parser", "html5lib", "lxml"]
-        self.parser = self.parsers[parser]
+        self.parser = parser
 
         try:
             page = requests.get(self.url, timeout=(self.conn_time_out, self.read_time_out))
@@ -52,7 +51,7 @@ class PageRipper:
             except OSError:
                 print("{} does not exist".format(self.url))
 
-        self.soup = BeautifulSoup(self.req_text, self.parsers[parser])
+        self.soup = BeautifulSoup(self.req_text, self.parser)
         self.raw_links = self.soup.find_all('a', href=True)
 
     def links(self):
