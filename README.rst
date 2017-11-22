@@ -15,12 +15,9 @@ Provides
 
 Installation 
 +++++++++++++++
-`PyPI <https://pypi.python.org/pypi>`_ ::
+`PyPI <https://pypi.python.org/pypi>`_ or `Github <https://github.com/>`_ ::
 
     pip install py_webber
-    
-`Github <https://github.com/>`_ ::
-
     pip install https://github.com/Parousiaic/py_webber/archive/master.zip
 
 Usage
