@@ -2,7 +2,7 @@ Python Web Development Tools
 ===============================
 Tools to automate common web scraping tasks.
 
-`<https://img.shields.io/readthedocs/pip/stable.svg>`_
+..image :: https://img.shields.io/readthedocs/pip/stable.svg
 
 Provides
 
