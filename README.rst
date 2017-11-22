@@ -5,7 +5,7 @@ Tools to automate common web scraping tasks.
 .. image:: https://img.shields.io/badge/py__webber-stable-blue.svg
 .. image:: https://img.shields.io/readthedocs/pip/stable.svg
         :alt: Documentation
-        :target: (https://pywebber.readthedocs.io/en/latest/)
+        :target: https://pywebber.readthedocs.io/en/latest/
 
 Provides
 
