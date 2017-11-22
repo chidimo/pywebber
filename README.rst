@@ -15,11 +15,10 @@ Provides
 
 Installation 
 +++++++++++++++
-`PyPI <https://pypi.python.org/pypi>`_, `Github <https://github.com/>`_ or `download <https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz>`_::
+`PyPI <https://pypi.python.org/pypi>`_, `Github <https://github.com/>`_ or `download <https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz>`_ ::
 
     pip install py_webber
     pip install https://github.com/Parousiaic/py_webber/archive/master.zip
-    https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz
 
 Usage
 ++++++
