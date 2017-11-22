@@ -2,6 +2,8 @@ Python Web Development Tools
 ===============================
 Tools to automate common web scraping tasks.
 
+https://img.shields.io/badge/py__webber-stable-blue.svg
+
 ..image:: https://img.shields.io/readthedocs/pip/stable.svg
 
 Provides
