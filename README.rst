@@ -2,8 +2,12 @@ Python Web Development Tools
 ===============================
 Tools to automate common web scraping tasks.
 
+`<https://img.shields.io/readthedocs/pip/stable.svg>`_
+
 Provides
+
 1. Link and words gatherer `py_webber.page_ripper.PageRipper`
+
 2. Random text generator `lorem_pysum.LoremPysum`
 
 Installation 
