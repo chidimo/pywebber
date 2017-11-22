@@ -9,9 +9,9 @@ Tools to automate common web scraping tasks.
 
 Provides
 
-1. Link and words gatherer `py_webber.page_ripper.PageRipper`
+1. Link and words gatherer `PageRipper <https://pywebber.readthedocs.io/en/latest/#pageripper>`_
 
-2. Random text generator `lorem_pysum.LoremPysum`
+2. Text generator `LoremPysum <https://pywebber.readthedocs.io/en/latest/#lorempysum>`_
 
 Installation 
 +++++++++++++++
