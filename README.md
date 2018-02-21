@@ -69,7 +69,7 @@ Access words and links like so ::
 
 If you wish to write the BeautifulSoup output to file, use codecs
 
-```
+```python
 import codecs
 with codecs.open(f_name, 'w+', encoding='utf-8') as whand:
     whand.write(soup.prettify())
