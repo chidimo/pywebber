@@ -1,5 +1,5 @@
 Metadata-Version: 1.1
-Name: py-webber
+Name: pywebber
 Version: 3.1
 Summary: Common tools employed in web development
 Home-page: https://github.com/Parousiaic/py_webber
@@ -7,22 +7,27 @@ Author: Chidi Matthew Orji
 Author-email: orjichidi95@gmail.com
 License: MIT
 Download-URL: https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz
+Description-Content-Type: UNKNOWN
 Description: Python Web Development Tools
         ===============================
         Tools to automate common web scraping tasks.
         
+        .. image:: https://img.shields.io/badge/py__webber-stable-blue.svg
+        .. image:: https://img.shields.io/readthedocs/pip/stable.svg
+                :alt: Documentation
+                :target: https://pywebber.readthedocs.io/en/latest/
+        
         Provides
-        1. Link and words gatherer `py_webber.page_ripper.PageRipper`
-        2. Random text generator `lorem_pysum.LoremPysum`
+        
+        1. Link and words gatherer `PageRipper <https://pywebber.readthedocs.io/en/latest/#pageripper>`_
+        
+        2. Text generator `LoremPysum <https://pywebber.readthedocs.io/en/latest/#lorempysum>`_
         
         Installation 
         +++++++++++++++
-        `PyPI <https://pypi.python.org/pypi>`_ ::
+        `PyPI <https://pypi.python.org/pypi>`_, `Github <https://github.com/>`_ or `download <https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz>`_ ::
         
             pip install py_webber
-            
-        `Github <https://github.com/>`_ ::
-        
             pip install https://github.com/Parousiaic/py_webber/archive/master.zip
         
         Usage

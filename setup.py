@@ -8,7 +8,7 @@ def readme():
     with open("README.rst") as rhand:
         return rhand.read()
 
-setup(name='py_webber',
+setup(name='pywebber',
       version='3.1',
       description='Common tools employed in web development',
       long_description=readme(),

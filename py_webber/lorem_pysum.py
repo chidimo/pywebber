@@ -3,23 +3,16 @@ Lorem Pysum: Name, email, title, sentence and paragraph generator
 """
 
 from __future__ import unicode_literals
-import string
 from random import randint, choice, sample, shuffle
 
 class LoremPysum(object):
     """Generate random sentences and paragraphs
-
+    
     parameters
-    -----------
     *args : any number of text files, optional
-
-    Notes
-    ------
-    Now updated LoremPysum to take any number of text files as input.
-
     """
-
-    def __init__(self, *args, domains=None, lorem=True):
+    
+    def __init__(self, *args, lorem=True):
         """Docstring"""
         self.lorem_ipsum = [
             'exercitationem', 'perferendis', 'perspiciatis', 'laborum', 'eveniet', 
@@ -53,22 +46,24 @@ class LoremPysum(object):
             'maxime', 'corrupti',]
 
         if args and lorem:
+            self.words = self.lorem_ipsum
+        elif args and (not lorem):
+            self.words = []
+        elif (not args) and lorem:
+            self.words = self.lorem_ipsum
+        if args:
             for file in args:
                 with open(file, 'r+') as fhand:
-                    new_words = (word.strip().lower() for word in fhand.read().split())
-                self.words = self.lorem_ipsum.extend(new_words)
-
+                    text = fhand.read().split()
+                new_words = (word.strip().lower() for word in text)
+                self.words.extend(new_words)
+                
             shuffle(self.words)
+            self.words = (self.words)
             length = len(self.words)//3 # pick the first third of words to make common
             self.common = self.words[:length]
             self.standard = ' '.join(self.common)
-
-        elif args and (not lorem):
-            self.words = []
-
-        elif (not args) and lorem:
-            self.words = self.lorem_ipsum
-
+        else:
             self.common = ('lorem', 'ipsum', 'dolor', 'sit', 'amet',
                         'consectetur', 'adipisicing', 'elit', 'sed',
                         'do', 'eiusmod', 'tempor', 'incididunt', 'ut',
@@ -82,18 +77,11 @@ class LoremPysum(object):
                             'occaecat cupidatat non proident, sunt in culpa qui officia deserunt '
                             'mollit anim id est laborum.')
 
-        if not domains:
-            self.domains = [".com", ".info", ".net", ".org"]
-        else:
-            with open(domains, "r+") as rh:
-                self.domains = list([each.lower().strip() for each in rhand.read().split()])
-
-
-    def title(self, n=5):
-        """return a title consisting of between 2 to n words. Default is 5"""
-        wordings = [(choice(self.words)).title() for i in range(randint(2, n))]
+    def title(self):
+        """return a title consisting of between 2 to 6 words"""
+        wordings = [(choice(self.words)).title() for i in range(randint(2, 6))]
         return ' '.join(list(wordings)).title()
-
+        
     def word(self):
         """Return a single word"""
         return choice(self.words)
@@ -102,45 +90,57 @@ class LoremPysum(object):
         """Return any name with a middle initial."""
         initial = choice(self.words).upper()[0]
         return ("{} {}. {}".format(self.word(), initial, self.word())).title()
-
+        
     def username(self):
         return "{}{}{}".format(choice(self.words), randint(1, 10), choice(self.words))
 
     def email(self):
-        """Return a single email address"""
-        return "{}@{}{}".format(choice(self.words), choice(self.words), choice(self.domains))
+        """Return an email address"""
+        fpart = choice(self.words)
+        lastpart = choice(self.words)
+        ending = choice(['com', 'info', 'org', 'net'])
+        return "{}@{}.{}".format(fpart, lastpart, ending)
 
-    def sentence(self, m=4, n=10):
+    def sentence(self):
         """
-        Return a sentence of between m to n words. First word is capitalized.
-        Defaults to between 4 to 10
-        """
-        first = self.word().title()
-        others = " ".join([self.word() for _ in range(m, n)])
-        return " ".join([first, others, choice(string.punctuation)])
+        Return a sentence
 
-    def sentences(self, count=2):
-        """Return a count number of sentences joined by a random punctuation mark"""
-        return choice(string.punctuation).join([self.sentence() for _ in range(count)])
+        Notes
+        The first word is capitalized, and the sentence ends in either a period or
+        question mark. Commas are added at random.
+        Determine the number of commaseparated sections and number of words in
+        each section for this sentence.
+        """
+        sections = [' '.join(sample(self.words, randint(3, 12))) for i in range(randint(1, 5))]
+        s = ', '.join(sections)
+        # Convert to sentence case and add end punctuation.
+        return "{}{}{}".format(s[0].upper(), s[1:], choice('?.'))
         
-    def paragraph(self, count=1, m=3, n=5, common=True):
+    def sentences(self, count=1):
+        return "\n\n".join([self.sentence() for _ in range(count)])
+
+    def paragraphs(self, count=1, common=True):
         """
         Return paragraphs
 
         Parameters
-        -----------
         count : int
             The number of required paragraph. Default is 1
         common : bool
             Whether the first paragraph will be the standard lorem ipsum text. Default is True
         """
-
         if count == 1:
-            paragraph = '\n\n'.join([self.sentences() for _ in range(randint(m, n))])
+            paragraph = ' '.join([self.sentence() for i in range(randint(3, 4))])
             return paragraph
+        paragraphs = []
+
+        if common:
+            paragraphs.append(self.standard)
         else:
-            paragraphs = '\n\n'.join([self.sentences() for _ in range(randint(m, n))])
-            if common:                
-                return '\n\n'.join([self.standard, paragraphs])
-            else:
-                return paragraphs
+            paragraph = ' '.join([self.sentence() for i in range(randint(3, 4))])
+            paragraphs.append(paragraph)
+
+        for i in range(1, count):
+            paragraph = ' '.join([self.sentence() for i in range(randint(3, 4))])
+            paragraphs.append(paragraph)
+        return "\n\n".join(paragraphs)
