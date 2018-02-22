@@ -2,7 +2,7 @@
 
 Python Web Development Tools
 
-![Alt text](https://img.shields.io/badge/py__webber-stable-blue.svg) ![Alt text](https://img.shields.io/readthedocs/pip/stable.svg)
+![Alt text](https://img.shields.io/badge/py__webber-stable-blue.svg)
 
 ## Utilities
 

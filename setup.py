@@ -9,7 +9,7 @@ def readme():
         return rhand.read()
 
 setup(name='pywebber',
-      version='4.0.0',
+      version='4.0',
       description='Common tools employed in web development',
       long_description=readme(),
       classifiers=[
@@ -23,7 +23,7 @@ setup(name='pywebber',
       ],
       keywords='web crawler, lorem ipsum text generator, page indexer',
       url='https://github.com/Parousiaic/py_webber',
-      download_url = 'https://github.com/Parousiaic/py_webber/archive/3.1.tar.gz',
+      download_url = 'https://github.com/Parousiaic/pywebber/archive/4.0.tar.gz',
       author='Chidi Matthew Orji',
       author_email='orjichidi95@gmail.com',
       license='MIT',
