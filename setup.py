@@ -9,7 +9,7 @@ def readme():
         return rhand.read()
 
 setup(name='pywebber',
-      version='3.5',
+      version='4.0.0',
       description='Common tools employed in web development',
       long_description=readme(),
       classifiers=[
@@ -27,7 +27,7 @@ setup(name='pywebber',
       author='Chidi Matthew Orji',
       author_email='orjichidi95@gmail.com',
       license='MIT',
-      packages=['py_webber'],
+      packages=['pywebber'],
       install_requires=[
           'beautifulsoup4'
       ],

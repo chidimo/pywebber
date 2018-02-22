@@ -10,25 +10,23 @@ Python Web Development Tools
 
 1. Text generator [LoremPysum](https://pywebber.readthedocs.io/en/latest/#lorempysum)
 
-## Installation 
+## Installation
 
-[PyPI](https://pypi.python.org/pypi), [Github](https://github.com/) or [download](https://github.com/Parousiaic/py_webber/archive/3.2.tar.gz)
-
-    pip install py_webber
-    pip install https://github.com/Parousiaic/py_webber/archive/master.zip
+    pip install pywebber
+    pip install https://github.com/Parousiaic/pywebber/archive/master.zip
 
 ## Usage
 
 ### LoremPysum - Generate random texts
 
-    $ from py_webber import LoremPysum
+    $ from pywebber import LoremPysum
 
 Create a single LoremPysum instance with default Lorem Ipsum text
 
     $ p = LoremPysum(*args, domains=None, lorem=True)
 
 You can also decide to include your words with the standard lorem ipsum text. But if that is not the case simply pass `lorem=False` like this ::
-    
+
     $ p = LoremPysum(*args, domains=None, lorem=False)
 
 `*args` is an optional list of files from which to get the words to be used. Just pass any number of text files as shown below
@@ -54,7 +52,7 @@ In case you want to look into the words used, the following instance attributes 
 
 ### PageRipper - gather words and links on a web page.
 
-    $ from py_webber import PageRipper
+    $ from pywebber import PageRipper
 
 Create page_ripper objects
 
