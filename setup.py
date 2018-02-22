@@ -5,11 +5,11 @@ from setuptools import setup
 
 def readme():
     """Readme"""
-    with open("README.rst") as rhand:
+    with open("README.md") as rhand:
         return rhand.read()
 
 setup(name='pywebber',
-      version='3.2',
+      version='3.5',
       description='Common tools employed in web development',
       long_description=readme(),
       classifiers=[

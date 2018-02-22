@@ -1,6 +1,6 @@
 LICENSE.txt
 MANIFEST.in
-README.rst
+README.md
 setup.py
 py_webber/__init__.py
 py_webber/indexing.py
