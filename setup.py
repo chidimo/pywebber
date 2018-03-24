@@ -29,7 +29,7 @@ setup(name='pywebber',
       license='MIT',
       packages=['pywebber'],
       install_requires=[
-          'beautifulsoup4'
+          'beautifulsoup4', 'requests'
       ],
       zip_safe=False,
       test_suite='nose2.collector.collector',)

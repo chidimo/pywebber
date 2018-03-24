@@ -36,6 +36,8 @@ class PageRipper:
         self.split_str = r'[\; \, \* \n \.+\- \( \) - \/ : \? \ — \']'
         self.stop_words = ['', '#', '\n', 'the', 'to'] # add more stop words
         self.parser = parser
+        self.parsers = ['html.parser', 'html5lib', 'lxml', 'lxml-xml']
+        self.reference = 'https://www.crummy.com/software/BeautifulSoup/bs4/doc/'
 
         try:
             page = requests.get(self.url, timeout=(self.conn_time_out, self.read_time_out))
