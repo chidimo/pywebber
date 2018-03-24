@@ -1,13 +1,12 @@
 Metadata-Version: 1.1
 Name: pywebber
-Version: 4.0
+Version: 4.1
 Summary: Common tools employed in web development
 Home-page: https://github.com/Parousiaic/py_webber
 Author: Chidi Matthew Orji
 Author-email: orjichidi95@gmail.com
 License: MIT
 Download-URL: https://github.com/Parousiaic/pywebber/archive/4.0.tar.gz
-Description-Content-Type: UNKNOWN
 Description: # pywebber
         
         Python Web Development Tools
