@@ -85,15 +85,18 @@ class Ripper:
                 return
 
         if refresh is False:
+            self.from_source = False
             try:
                 with open(self.page_save_path(), 'r+') as rh:
                     self.soup = BeautifulSoup(rh.read(), self.parser)
             except FileNotFoundError:
+                self.from_source = True
                 self.soup = BeautifulSoup(self.req_text, self.parser)
                 self.save_page()
         else:
             self.soup = BeautifulSoup(self.req_text, self.parser)
             self.save_page()
+            self.from_source = True
 
         self.raw_links = self.soup.find_all('a', href=True)
 
