@@ -17,6 +17,32 @@ Python Web Development Tools
 
 ## Usage
 
+### Ripper - harvest words and links on a static web page.
+
+    $ from pywebber import Ripper
+
+Access words and links is easy
+
+    $ page = Ripper('http://python.org')
+    $ soup = page.soup
+    $ uncleaned_links = page.raw_links # all raw <a> tags on page as bs4 objects
+    $ cleaned_links = page.links() # generator of all links in the form `http://www.domain.location`
+    $ words = page.words() # a generator of words between <p> tags
+
+The following instance creation options are available
+
+1. `url` : Default to `url="http://python.org"`
+1. `parser` : Default to `parser="html.parser"`. To see a complete list of parsers, user `object_instance.parsers`
+1. `refresh`: Default to `refresh=False`. The first time `Ripper` hits a page, it saves the scrapped content in a text file from
+ which consequent calling of the class reads. But if set to `True`, `Ripper` will hit the site to get its data
+construct its object each time its called.
+1. `save_path` : Default to `save_path=None`. In this case, `Ripper` creates a folder on your `USER DESKTOP`. This folder name
+ is in the format `domainName_extension`. Every page scrapped from that site is saved inside this foler. Its also possible to
+set `save_path=/some/other/path`. The save file name is of the format `page_url.txt`
+1. `split_string` : Defaults to `string.punctuation.extend(["n", " ", "://",])`. You can supply a list to add to this set.
+1. `stop_words` : Defaults to `['', '#', '\n', 'the', 'to', "but", "and"]`. These are words that should not be included when
+`object_instance.words()` is called. You can supply a list to add to this set.
+
 ### LoremPysum - Generate random texts
 
     $ from pywebber import LoremPysum
@@ -49,31 +75,6 @@ In case you want to look into the words used, the following instance attributes 
     $ p.words # A list of all the words in the lorem ipsum text.
     $ p.standard # Standard lorem ipsum text. Usually the first 1/3rd portion of a sample file.
     $ p.domains # list of domain name endings
-
-### Ripper - harvest words and links on a static web page.
-
-    $ from pywebber import Ripper
-
-Access words and links is easy
-
-    $ page = Ripper('http://python.org')
-    $ soup = page.soup
-    $ uncleaned_links = page.raw_links # all raw <a> tags on page as bs4 objects
-    $ cleaned_links = page.links() # generator of all links in the form `http://www.domain.location`
-    $ words = page.words() # a generator of words between <p> tags
-
-The following instance creation options are available
-
-1. `url` : Default to `url="http://python.org"`
-1. `parser` : Default to `parser="html.parser"`. To see a complete list of parsers, user `object_instance.parsers`
-1. `refresh`: Default to `refresh=False`. The first time `Ripper` hits a page, it saves the scrapped content in a text file from
- which consequent calling of the class reads. But if set to `True`, `Ripper` will hit the site to get its data
-construct its object each time its called.
-1. `save_path` : Default to `save_path=None`. In this case, `Ripper` creates a folder on your `USER DESKTOP`. This folder name
- is in the format `domainName_extension`. Every page scrapped from that site is saved inside this foler. Its also possible to
-set `save_path=/some/other/path`. The save file name is of the format `page_url.txt`
-1. `split_string` : Defaults to `[";", ",", "*", "n", ".+", "-", "(", ")", "-", "/", ":", "?", "", "—", "'", "://"]`. You can supply a list to add to this set.
-1. `stop_words` : Defaults to `['', '#', '\n', 'the', 'to']`. You can supply a list to add to this set.
 
 ## Code
 

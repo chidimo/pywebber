@@ -1,9 +1,11 @@
 """Create a BeautifulSoup object of a webpage"""
 
 import os
+import sys
 import re
 import time
 import codecs
+import string
 import requests
 import requests.exceptions as rqe
 from bs4 import BeautifulSoup
@@ -42,24 +44,27 @@ class Ripper:
         self.parser = parser
         self.parsers = ['html.parser', 'html5lib', 'lxml', 'lxml-xml']
         self.reference = 'https://www.crummy.com/software/BeautifulSoup/bs4/doc/'
+
+        default_splitters = [each for each in string.punctuation]
+        default_splitters.extend(["n", " ", "://",])
         if split_string is None:
-            # self.split_string = r'[\; \, \* \n \.+\- \( \) - \/ : \? \ — \' ://]'
-            default_splitters = [";", ",", "*", "n", ".+", "-", "(", ")", "-", "/", ":", "?", "", "—", "'", "://"]
             self.split_string = self.make_split_string(default_splitters)
         else:
-            extended_string = split_string.extend(default_splitters)
-            self.split_string = self.make_split_string(extended_string)
+            self.split_string = self.make_split_string(split_string.extend(default_splitters))
+
+        self.stop_words = ['', '#', '\n', 'the', 'to', "but", "and"]
         if stop_words is None:
-            self.stop_words = ['', '#', '\n', 'the', 'to']
+            pass
         else:
-            self.stop_words = stop_words.extend(['', '#', '\n', 'the', 'to']) # add more stop words
+            self.stop_words.extend(stop_words) # add more stop words
 
         if save_path is None:
             DESKTOP = os.path.abspath(
                 os.path.abspath(os.path.expanduser('~')) + '/Desktop/')
-            self.FILE_DIR = os.path.join(DESKTOP ,self.site_name())
+            self.FILE_DIR = os.path.join(DESKTOP, self.site_name())
         else:
             self.FILE_DIR = save_path
+
         try:
             os.mkdir(self.FILE_DIR) # create save directory
         except FileExistsError:
@@ -69,15 +74,15 @@ class Ripper:
             page = requests.get(self.url, timeout=(self.conn_time_out, self.read_time_out))
             self.req_text = page.text
         except rqe.MissingSchema:
-            print("Please check your url format")
-            print("It should be in the form <http://something.extension>")
+            print("Please check your url format.\nIt should be in the form <http://something.extension>")
             return None
         except rqe.InvalidSchema:
             try:
                 with open(self.url, "r+") as rhand:
                     self.req_text = rhand.read()
             except OSError:
-                print("{} does not exist".format(self.url))
+                print("Your url schema is invalid.\nPlease check your url".format(self.url))
+                return
 
         if refresh is False:
             try:
@@ -101,10 +106,14 @@ class Ripper:
 
     def site_name(self):
         folder = self.url.split("://")
-        folder = folder[1].split(".")
-        site = folder[0]
-        ext = folder[1].split("/")[0]
-        return "{}_{}".format(site, ext)
+        try:
+            folder = folder[1].split(".")
+            site = folder[0]
+            ext = folder[1].split("/")[0]
+            return "{}_{}".format(site, ext)
+        except IndexError:
+            print("Your url schema is not complete.\nPlease include the <http://> part")
+            sys.exit()
 
     def page_save_path(self):
         name = [each for each in re.split(self.split_string, self.url) if each != '']
@@ -165,8 +174,8 @@ class Ripper:
         paragraph_text = ' '.join(all_words)
         # text_all_page = self.soup.get_text()
 
-        words = [word.lower().strip() for word in re.split(self.split_string, paragraph_text)]
+        words = [word.lower().strip() for word in re.split(self.split_string, paragraph_text) if word not in self.stop_words]
 
         for each_word in unique_everseen(words): # unique words
-            if each_word not in self.stop_words:
-                yield each_word
+            yield each_word
+
