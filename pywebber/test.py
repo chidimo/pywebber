@@ -5,9 +5,15 @@ import shutil
 from .ripper import Ripper
 
 class TestRipper(unittest.TestCase):
-    def setUp(self):
-        self.url = "http://python.org"
-        self.page = Ripper(self.url)
+
+    @classmethod
+    def setUpClass(cls):
+        cls.url = "http://python.org"
+        cls.page = Ripper(cls.url)
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(os.path.dirname(cls.page.page_save_path()))
 
     def test_class_string_representation(self):
         self.assertEqual(self.page.__str__(), "Rip: {}".format(self.url))
@@ -21,13 +27,14 @@ class TestRipper(unittest.TestCase):
     def test_file_created_upon_object_creation(self):
         obj_path = self.page.page_save_path()
         assert(obj_path)
+        
+    def test_reading_from_file_when_link_is_same(self):
+        page = Ripper("http://python.org")
+        self.assertFalse(page.from_source)
 
-    # def test_reads_from_source_when_refresh_is_true(self):
-    #     self.page.refresh = True
-    #     self.assertTrue(self.page.from_source)
-
-    def test_reading_from_for_old_link(self):
-        self.assertFalse(self.page.from_source)
+    def test_reads_from_source_when_refresh_is_true(self):
+        page = Ripper("http://python.org", refresh=True)
+        self.assertTrue(page.from_source)
 
     def test_reading_from_source_for_new_link(self):
         page = Ripper("https://google.com")
