@@ -1,6 +1,6 @@
 """Indexing functions"""
 
-from .page_ripper import PageRipper
+from .ripper import Ripper
 
 def add_to_index(word_index, word, page_url):
     """Add a word to word index and adds a page url to
@@ -55,4 +55,3 @@ def add_page_to_index(word_index, page_url):
     if all_words is not None:
         for word in all_words:
             add_to_index(word_index, word, page_url)
-    
