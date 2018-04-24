@@ -1,0 +1,16 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+pywebber/__init__.py
+pywebber/indexing.py
+pywebber/lorem.py
+pywebber/ripper.py
+pywebber/test.py
+pywebber/utils.py
+pywebber.egg-info/PKG-INFO
+pywebber.egg-info/SOURCES.txt
+pywebber.egg-info/dependency_links.txt
+pywebber.egg-info/not-zip-safe
+pywebber.egg-info/requires.txt
+pywebber.egg-info/top_level.txt
