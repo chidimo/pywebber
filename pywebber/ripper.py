@@ -9,7 +9,7 @@ import string
 import requests
 import requests.exceptions as rqe
 from bs4 import BeautifulSoup
-from .utils import unique_everseen
+from utils import unique_everseen
 
 class Ripper:
     """Harvest words and links from a webpage
@@ -181,4 +181,3 @@ class Ripper:
 
         for each_word in unique_everseen(words): # unique words
             yield each_word
-
