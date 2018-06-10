@@ -8,6 +8,13 @@ Python Web Development Tools
 
 1. Link and words harvester [Ripper](https://pywebber.readthedocs.io/en/latest/#pageripper)
 
+### parsers
+
+`html.parser`
+    $ pip install html5lib # html5lib
+`lxml`,
+`lxml-xml`
+
 1. Text generator [LoremPysum](https://pywebber.readthedocs.io/en/latest/#lorempysum)
 
 ## Installation
@@ -80,3 +87,4 @@ In case you want to look into the words used, the following instance attributes 
 ## Credits
 
 1. [Luca De Vitis](http://loremipsum.readthedocs.io/en/latest/) for the inspiration and starter code for `LoremPysum`
+1. ['BeautifulSoup documentation'](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)

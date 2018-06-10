@@ -2,18 +2,20 @@ import unittest
 from unittest import mock
 import shutil
 
+
 from ripper import Ripper
 
 class RipperTests(unittest.TestCase):
-    def setUp(self):
-        self.Ripper = Ripper()
 
-    @mock.patch('ripper.string')
     @mock.patch('ripper.requests')
-    def test_instantiation(self, mocked_string, mocked_requests):
-        Ripper()
-        mocked_requests.get.assert_called_with()
+    @mock.patch('ripper.re')
+    @mock.patch('ripper.os')
+    def test_init_with_default_arguments(self, mock_os, mock_re, mock_requests):
+        ripper = Ripper()
+        # mocked_requests.get.assert_called_with()
         # mocked_string.punctuation.assert_called_with()
+    # def test_init_with_user_arguments(self):
+    #     ripper = Ripper(url='some/url')
 
 
 # class TestRipper(unittest.TestCase):

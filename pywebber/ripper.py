@@ -6,8 +6,10 @@ import re
 import time
 import codecs
 import string
+import unicodedata
+
 import requests
-import requests.exceptions as rqe
+from requests.exceptions import MissingSchema, InvalidSchema
 from bs4 import BeautifulSoup
 from utils import unique_everseen
 
@@ -33,101 +35,97 @@ class Ripper:
     3. Ripper("http://python.org").links()
     4. Ripper("http://python.org").words()
     """
-    def __init__(
-        self, url="http://python.org", parser="html.parser", refresh=False, save_path=None,
-        stop_words=None, split_string=None):
-        self.url = url
-        self.datetime = time.strftime('%Y-%m-%d')
+    def __init__(self, url="http://python.org", parser="html.parser", refresh=True, save_path=None, stop_words=None, split_string=None):
+        """__init__
+        Parameters
+        -----------
+        bool : refresh
+            Specifies if page should be read from source. Defaults to True
+        str : save_path
+            Specifies folder to save the text file of scraped page
+        list : stop_words
+            A list of words to not include in the output of words()
+        list : split_string
+            A list of strings with which to split the words on the page
+        """
+        self.url = url#.strip()
+        self.split_string = self.word_splitters(split_string)
+        self.stop_words = self.stop_words(stop_words)
         self.refresh = refresh
-        self.conn_time_out = 10.0
-        self.read_time_out = 10.0
         self.parser = parser
-        self.parsers = ['html.parser', 'html5lib', 'lxml', 'lxml-xml']
-        self.reference = 'https://www.crummy.com/software/BeautifulSoup/bs4/doc/'
-
-        default_splitters = [each for each in string.punctuation]
-        default_splitters.extend(["n", " ", "://",])
-        if split_string is None:
-            self.split_string = self.make_split_string(default_splitters)
+        if save_path:
+            self.save_path = save_path
         else:
-            self.split_string = self.make_split_string(split_string.extend(default_splitters))
-
-        self.stop_words = ['', '#', '\n', 'the', 'to', "but", "and"]
-        if stop_words is None:
-            pass
-        else:
-            self.stop_words.extend(stop_words) # add more stop words
-
-        if save_path is None:
-            DESKTOP = os.path.abspath(
-                os.path.abspath(os.path.expanduser('~')) + '/Desktop/')
-            self.FILE_DIR = os.path.join(DESKTOP, self.site_name())
-        else:
-            self.FILE_DIR = save_path
+            self.save_path = self.get_save_path()
 
         try:
-            os.mkdir(self.FILE_DIR) # create save directory
-        except FileExistsError:
-            pass
+            req_text = requests.get(self.url, timeout=(10.0, 10.0)).text
+        except MissingSchema:
+            raise MissingSchema("url should be in the form <http://domain.extension>")
+        except InvalidSchema:
+            raise InvalidSchema("Your url, {}, has an invalid schema".format(self.url))
 
-        try:
-            page = requests.get(self.url, timeout=(self.conn_time_out, self.read_time_out))
-            self.req_text = page.text
-        except rqe.MissingSchema:
-            print("Please check your url format.\nIt should be in the form <http://something.extension>")
-            return None
-        except rqe.InvalidSchema:
+        if self.refresh:
+            self.soup = BeautifulSoup(req_text, self.parser)
+            self.save_page(self.soup, self.get_save_path())
+        else:
             try:
-                with open(self.url, "r+") as rhand:
-                    self.req_text = rhand.read()
-            except OSError:
-                print("Your url schema is invalid.\nPlease check your url".format(self.url))
-                return
-
-        if refresh is False:
-            self.from_source = False
-            try:
-                with open(self.page_save_path(), 'r+') as rh:
+                with open(self.get_save_path(), 'r+') as rh:
                     self.soup = BeautifulSoup(rh.read(), self.parser)
             except FileNotFoundError:
-                self.from_source = True
-                self.soup = BeautifulSoup(self.req_text, self.parser)
-                self.save_page()
-        else:
-            self.soup = BeautifulSoup(self.req_text, self.parser)
-            self.save_page()
-            self.from_source = True
-
+                raise FileNotFoundError("File may have been moved. Try again with 'refresh=True'")
         self.raw_links = self.soup.find_all('a', href=True)
 
     def __str__(self):
         return "Rip: {}".format(self.url)
 
-    def make_split_string(self, split_string):
-        str_format = ["\{}".format(each) for each in split_string]
-        return "[{}]".format(" ".join(str_format))
+    @staticmethod
+    def simple_slugify(value):
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+        value = re.sub(r'[^\w\s-]', '_', value).strip().lower()
+        return re.sub(r'[-\s]+', '-', value)
 
-    def site_name(self):
-        folder = self.url.split("://")
+    @staticmethod
+    def save_page(soup, file_name):
+        file_name += '.txt'
+        with codecs.open(file_name, 'w+', encoding='utf-8') as fh:
+            fh.write(soup.prettify())
+
+    @staticmethod
+    def word_splitters(split_string):
+        """Get a list of words for splitting scraped results"""
+        splitters = [each for each in string.punctuation]
+        splitters.extend(["n", " ", "://",])
+        if split_string:
+            splitters.extend(self.split_string)
+        return "[{}]".format(" ".join(splitters))
+
+    @staticmethod
+    def stop_words(word_list):
+        stop_words = ['', '#', '\n', 'the', 'to', "but", "and"]
+        if word_list:
+            stop_words.extend(word_list)
+        return stop_words
+
+    def get_save_path(self):
+        # set save directory
+        DESKTOP = os.path.abspath(os.path.abspath(os.path.expanduser('~')) + '/Desktop/')
+        FILE_DIR = os.path.join(DESKTOP, self.get_site_folder_name())
+
+        if os.path.exists(FILE_DIR) is False:
+            os.mkdir(FILE_DIR) # create save directory
+        return os.path.join(FILE_DIR, self.simple_slugify(self.url))
+
+    def get_site_folder_name(self):
+        """This prevents the program from even getting to the MissingSchema part"""
         try:
-            folder = folder[1].split(".")
+            folder = self.url.split("://")[1]
+            folder = folder.split(".")
             site = folder[0]
             ext = folder[1].split("/")[0]
             return "{}_{}".format(site, ext)
         except IndexError:
-            print("Your url schema is not complete.\nPlease include the <http://> part")
-            sys.exit()
-
-    def page_save_path(self):
-        name = [each for each in re.split(self.split_string, self.url) if each != '']
-        name = "_".join(name) + "_" + self.datetime + ".txt"
-        save_path = os.path.join(self.FILE_DIR, name)
-        return save_path
-
-    def save_page(self):
-        file_name = self.page_save_path()
-        with codecs.open(file_name, 'w+', encoding='utf-8') as fh:
-            fh.write(self.soup.prettify())
+            raise IndexError("Your url schema is not complete.\nPlease include the <http://> part")
 
     def links(self):
         """Return all crawlable links (clickable url) on webpage
@@ -151,11 +149,13 @@ class Ripper:
         link_refs = [link.get('href') for link in links]
 
         unique_links = filter(lambda x: '#' not in x, link_refs)
+        links = []
         for each_link in unique_links:
             if each_link.startswith('http'):
-                yield each_link
+                links.append(each_link)
             else:
-                yield self.url + each_link
+                links.append(self.url + each_link)
+        return set(links)
 
     def words(self):
         """Harvest all words enclosed in <p> tags in webpage source
